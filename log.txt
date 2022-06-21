@@ -1,0 +1,64 @@
+Nhật ký Làm Game Rắn Săn Mồi Đơn Giản Điều Khiển Bằng Các Phím Mũi Tên 
+Họ Và Tên: Trần Việt Dũng 
+MSSV: K185520216125
+
++) Block 
+- Dùng để tạo đường viền, border 
+
++) Material 
+- Dùng để tạo màu sắc phân biệt cho đầu và đuôi rắn, head of snake (color: 228019), tail of snake (color: 54E225)
+
++) Tạo border 
+- Tạo border trái, phải, trên, dưới 
+- xSize, ySize 
+- Ví dụ với border dưới:
+xSize = 10
+ySize = 10
+Tạo một vòng lặp chạy qua xSize từ 0 đến 10, mỗi lần lặp tạo ra 1 block bằng phương thức clone "Instantiate" 
+tại các position (x - xSize / 2, -ySize / 2)
+
+Center point = (0, 0)
+for( x = 0; x <= xSize ; x++)
+{
+	position = Vector3(x - xSize / 2, -ySize / 2, 0)
+	x = 0 => position = (0 - 10/2, -10/2, 0) = (-5, -5)
+	x = 1 => position = (-4, -5)
+	x = 2 => position = (-3, -5)
+ 	x = 3 => position = (-2, -5)
+	x = 4 => position = (-1, -5)
+	x = 5 => position = (0, -5)
+	x = 6 => position = (1, -5)
+	x = 7 => position = (2, -5)
+	x = 8 => position = (3, -5)
+	x = 9 => position = (4, -5)
+	x = 9 => position = (5, -5)
+}
+
++) Gán Script Snake cho main camera để gán block game object và thực thi tạo viền bằng block
+
++) Tạo đối tượng snake:
+- Cho cái đầu tạo Game Object head
+- Cho nhiều cái đuôi tạo 1 List Game Object tail
+- Vì đối tượng vật lý đại diện trong Unity editor cho đầu và đuôi là các Material => khai báo hai biến 
+headMaterial (đầu rắn), tailMaterial (đuôi rắn) kiểu Material để Unity tham chiếu tới 
+- Phương thức "createPlayer" để tạo snake 
+
++) Tạo food:
+- Phương thức "spawnFood" để tạo vị trí cho con mồi mà snake có thể ăn 
+- Phương thức này sẽ kiểm tra vị trí mà thức ăn được spawn, nếu spawn trong con rắn sẽ phải spawn lại
+- Sau khi có vị trí sẽ gen game object food  
+
++) Thêm movement 
+- Đầu tiên, tạo vector dir sẽ chứa hướng di chuyển của snake 
+- Trong phương thức Start, ban đầu sẽ cho snake di chuyển sang phải 
+- Trong phương thức Update, luôn luôn đọc các phím mũi tên nếu được nhấn 
+để cập nhật điều khiển hướng đi của snake 
+- Kiểm tra vị trí đầu rắn với border + Kiểm tra đầu rắn với đuôi rắn 
+=> nếu trùng thì game over, isAlive = false => game object Gameover enable => restart game 
+=> Nếu không thì cộng điểm, tạo vị trí cho đầu rắn và spawn food mới 
+
+
+
+
+
+
